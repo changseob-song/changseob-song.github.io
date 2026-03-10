@@ -47,9 +47,9 @@
                 <h2>Research</h2>
                 <p>
                   I'm interested in enhancing human mobility using robotics, machine learning, and human movement modeling. My current research focuses on:
-                  <br> &ensp; <em>- Online continual adaptation of exo controllers </em>
-                  <br> &ensp; <em>- Locomotor context and user movement prediction using egocentric vision</em>
+                  <br> &ensp; <em>- Rapid online personalization of exo controllers </em>
                   <br> &ensp; <em>- Learning user-specific digital twin in physics-informed predictive simulation</em>
+                  <br> &ensp; <em>- User movement and locomotor context prediction using exocentric/egocentric vision </em>
                   <br><br> Also, I am interested in variable-rigidity hardware principles using multi-physics phenomena such as magnetism.
                   <br> &ensp; <em>- Granluar jamming structures using soft magnetic particles</em>
                   <br> &ensp; <em>- Designing variable stiffness mechanisms using soft and hard magnetic materials</em>
@@ -58,6 +58,44 @@
             </tr>
           </tbody></table>
           <table style="width:100%;border:0px;border-spacing:0px 10px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+
+<tr onmouseout="Sim2Real_hipexo_stop()" onmouseover="Sim2Real_hipexo_start()">
+  <td style="padding:16px;width:20%;vertical-align:middle">
+    <div class="one">
+      <div class="two" id='Sim2Real_hipexo_image'>
+        <img src='images/Sim2Real_hipexo.gif' width=100%>
+      </div>
+      <img src='images/Sim2Real_hipexo.gif' width=100%>
+    </div>
+    <script type="text/javascript">
+      function Sim2Real_hipexo_start() {
+        document.getElementById('Sim2Real_hipexo_image').style.opacity = "1";
+      }
+
+      function Sim2Real_hipexo_stop() {
+        document.getElementById('Sim2Real_hipexo_image').style.opacity = "0";
+      }
+      Sim2Real_hipexo_stop()
+    </script>
+  </td>
+  <td style="padding:8px;width:80%;vertical-align:middle">
+    <span class="papertitle">Learning Hip Exoskeleton Control Policy via Predictive Neuromusculoskeletal Simulation</span>
+    <br>
+    <br>
+    Ilseung Park
+    <strong>Changseob Song</strong>,
+    Inseung Kang,
+    <br>
+    <em>arXiv</em>, 2026
+    <br>
+    <a href="https://arxiv.org/abs/2603.04166"><u>Paper</u></a> &nbsp;/&nbsp;
+    <a href="https://ilseungpark.github.io/Learning-Hip-Exo/"><u>Project Page</u></a>
+    <p></p>
+    <p>
+  Neuromusculoskeletal simulation framework that trains exoskeleton control policies without motion-capture data, demonstrating that reinforcement learning can enable sim-to-real transfer across diverse walking conditions.
+    </p>
+  </td>
+</tr>
 
 <tr onmouseout="IROS_2025_stop()" onmouseover="IROS_2025_start()">
   <td style="padding:16px;width:20%;vertical-align:middle">
