@@ -59,6 +59,43 @@
           </tbody></table>
           <table style="width:100%;border:0px;border-spacing:0px 10px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
 
+<tr onmouseout="Continual_online_personalization_stop()" onmouseover="Continual_online_personalization_start()">
+  <td style="padding:16px;width:20%;vertical-align:middle">
+    <div class="one">
+      <div class="two" id='Continual_online_personalization_image'>
+        <img src='images/Continual_online_personalization.gif' width=100%>
+      </div>
+      <img src='images/Continual_online_personalization.gif' width=100%>
+    </div>
+    <script type="text/javascript">
+      function Continual_online_personalization_start() {
+        document.getElementById('Continual_online_personalization_image').style.opacity = "1";
+      }
+
+      function Continual_online_personalization_stop() {
+        document.getElementById('Continual_online_personalization_image').style.opacity = "0";
+      }
+      Continual_online_personalization_stop()
+    </script>
+  </td>
+  <td style="padding:8px;width:80%;vertical-align:middle">
+    <span class="papertitle">Continual Online Personalization of Exoskeleton Control via Manifold-Aware Experience Replay</span>
+    <br>
+    <br>
+    <strong>Changseob Song</strong>,
+    Inseung Kang
+    <br>
+    <em>arXiv</em>, 2026
+    <br>
+    <a href="https://arxiv.org/pdf/2606.17455"><u>Paper</u></a> &nbsp;/&nbsp;
+    <a href="https://changseob-song.github.io/continual-online-personalization/"><u>Project Page</u></a>
+    <p></p>
+    <p>
+      Manifold-aware experience replay for stable, real-time personalization of exoskeleton control across multimodal locomotor tasks.
+    </p>
+  </td>
+</tr>
+
 <tr onmouseout="Sim2Real_hipexo_stop()" onmouseover="Sim2Real_hipexo_start()">
   <td style="padding:16px;width:20%;vertical-align:middle">
     <div class="one">
