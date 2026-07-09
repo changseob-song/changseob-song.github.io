@@ -59,6 +59,47 @@
           </tbody></table>
           <table style="width:100%;border:0px;border-spacing:0px 10px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
 
+<tr onmouseout="Subject_conditioned_diffusion_stop()" onmouseover="Subject_conditioned_diffusion_start()">
+  <td style="padding:16px;width:20%;vertical-align:middle">
+    <div class="one">
+      <div class="two" id='Subject_conditioned_diffusion_image'>
+        <img src='images/Subject_conditioned_diffusion.gif' width=100%>
+      </div>
+      <img src='images/Subject_conditioned_diffusion.gif' width=100%>
+    </div>
+    <script type="text/javascript">
+      function Subject_conditioned_diffusion_start() {
+        document.getElementById('Subject_conditioned_diffusion_image').style.opacity = "1";
+      }
+
+      function Subject_conditioned_diffusion_stop() {
+        document.getElementById('Subject_conditioned_diffusion_image').style.opacity = "0";
+      }
+      Subject_conditioned_diffusion_stop()
+    </script>
+  </td>
+  <td style="padding:8px;width:80%;vertical-align:middle">
+    <span class="papertitle">Generating Personalized Lower-Limb Kinematics Across Walking Speeds Using Subject-Conditioned Diffusion</span>
+    <br>
+    <br>
+    Diya Dinesh*,
+    Adrian Krieger*,
+    <strong>Changseob Song</strong>,
+    Dongho Park,
+    Aaron J. Young,
+    Inseung Kang
+    <br>
+    <em>arXiv</em>, 2026
+    <br>
+    <a href="http://arxiv.org/abs/2607.07533"><u>Paper</u></a> &nbsp;/&nbsp;
+    <a href="https://changseob-song.github.io/subject-conditioned-diffusion/"><u>Project Page</u></a>
+    <p></p>
+    <p>
+      Manifold-aware experience replay for stable, real-time personalization of exoskeleton control across multimodal locomotor tasks.
+    </p>
+  </td>
+</tr>
+
 <tr onmouseout="Continual_online_personalization_stop()" onmouseover="Continual_online_personalization_start()">
   <td style="padding:16px;width:20%;vertical-align:middle">
     <div class="one">
