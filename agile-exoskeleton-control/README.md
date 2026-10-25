@@ -43,7 +43,7 @@ Edit static/js/media.js. The current slots are walking and running. Example:
 
 For YouTube, set type to "youtube" and src to the video URL or its 11-character ID. Privacy-enhanced embeds are used. Do not use a YouTube URL with type "video".
 
-Set caption to override a default caption. MP4/WebM players have controls, loop, and do not autoplay. New media slots need matching data-media attributes in index.html.
+Set caption to override a default caption. MP4/WebM players autoplay muted, loop, and retain controls so visitors can pause or unmute them. Browser policies may still restrict autoplay. New media slots need matching data-media attributes in index.html.
 
 ## Current recordings
 

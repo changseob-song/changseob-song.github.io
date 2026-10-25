@@ -38,11 +38,14 @@
       const src = safeUrl(config.src);
       if (!src) return;
       element = document.createElement("video");
-      element.src = src;
       element.controls = true;
+      element.autoplay = true;
+      element.muted = true;
+      element.defaultMuted = true;
       element.loop = true;
       element.playsInline = true;
-      element.preload = "metadata";
+      element.preload = "auto";
+      element.src = src;
       element.setAttribute("aria-label", slot.getAttribute("aria-label"));
       const poster = safeUrl(config.poster);
       if (poster) element.poster = poster;
@@ -54,6 +57,10 @@
     }
     slot.querySelector(".media-placeholder").hidden = true;
     slot.append(element);
+    if (element.tagName === "VIDEO") {
+      // Keep the native play control available if browser policy blocks autoplay.
+      element.play().catch(() => {});
+    }
     if (config.caption) slot.closest("figure").querySelector("figcaption").textContent = config.caption;
   });
   const framework = media.framework;
@@ -71,4 +78,3 @@
   window.addEventListener("scroll", updateTopLink, { passive: true });
   updateTopLink();
 })();
-
