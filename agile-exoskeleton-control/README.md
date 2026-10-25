@@ -14,7 +14,7 @@ The HTML includes noindex, nofollow, and noarchive directives. These ask complia
 
 - Confirm the final title and affiliations. Author order supplied by Changseob: Changseob Song, Ilseung Park, Inseung Kang.
 - Replace or refine the project description and conceptual framework using the actual implementation.
-- Add project-specific demonstration videos.
+- Walking and running demonstrations are included. Add more project-specific videos as needed.
 - Add quantitative findings only when ready to share; there are no fabricated metrics, publication claims, or hardware-validation claims.
 - Add a paper/preprint or citation only when it exists.
 
@@ -24,18 +24,25 @@ The copy is based on the supplied description: an adversarial motion prior train
 
 Put this project's MP4/WebM files in static/videos/ and optional poster images in static/images/.
 
-Edit static/js/media.js. The four slots are overview, motion-prior, terrain, and exoskeleton. Example:
+Edit static/js/media.js. The current slots are walking and running. Example:
 
-    terrain: {
+    walking: {
       type: "video",
-      src: "static/videos/uneven-terrain.mp4",
-      poster: "static/images/uneven-terrain.jpg",
+      src: "static/videos/walking.mp4",
+      poster: "static/images/walking.jpg",
       caption: "Replace with the actual terrain and conditions shown."
     },
 
 For YouTube, set type to "youtube" and src to the video URL or its 11-character ID. Privacy-enhanced embeds are used. Do not use a YouTube URL with type "video".
 
-Leave src empty for slots that do not have media yet. They display "Video coming soon" and make no missing-file requests. Set caption to override a default caption. MP4/WebM players have controls, loop, and do not autoplay.
+Set caption to override a default caption. MP4/WebM players have controls, loop, and do not autoplay. New media slots need matching data-media attributes in index.html.
+
+## Current recordings
+
+- Walking: first supplied recording, 23.72 seconds.
+- Running: second supplied recording, 25.93 seconds.
+
+The supplied MOV recordings were converted to H.264 MP4 with AAC audio, 1440-pixel width, 30 fps, and fast-start metadata. Duration, full frame, and audio are preserved. JPEG poster frames were extracted at 5 seconds. The original recordings were not modified.
 
 Optional framework figure:
 

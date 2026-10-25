@@ -5,10 +5,7 @@
  * Full instructions: agile-exoskeleton-control/README.md.
  */
 window.AGILE_PROJECT_MEDIA = {
-  overview: { type: "video", src: "", poster: "", caption: "" },
-  "motion-prior": { type: "video", src: "", poster: "", caption: "" },
-  terrain: { type: "video", src: "", poster: "", caption: "" },
-  exoskeleton: { type: "video", src: "", poster: "", caption: "" },
+  walking: { type: "video", src: "static/videos/walking.mp4", poster: "static/images/walking.jpg", caption: "Walking in musculoskeletal simulation." },
+  running: { type: "video", src: "static/videos/running.mp4", poster: "static/images/running.jpg", caption: "Running in musculoskeletal simulation." },
   framework: { src: "", alt: "Overview of the agile exoskeleton control learning framework", caption: "" }
 };
-
