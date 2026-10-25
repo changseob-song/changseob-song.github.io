@@ -14,7 +14,7 @@
   <meta property="og:description" content="Research preview: learning diverse locomotor behaviors from a small set of reference motions in musculoskeletal simulation.">
   <meta property="og:url" content="https://changseob-song.github.io/agile-exoskeleton-control/">
   <meta name="twitter:card" content="summary">
-  <link rel="stylesheet" href="static/css/index.css?v=walking-running-1">
+  <link rel="stylesheet" href="static/css/index.css?v=methods-v14-1">
   <script defer src="static/js/media.js?v=walking-running-1"></script>
   <script defer src="static/js/index.js"></script>
 </head>
@@ -31,6 +31,7 @@
           <a class="button" href="#overview">Overview</a>
           <a class="button" href="#demonstrations">Videos</a>
           <a class="button" href="#framework">Framework</a>
+          <a class="button" href="#methods">Methods</a>
         </nav>
       </div>
     </header>
@@ -90,7 +91,7 @@
           <article class="feature-card">
             <span class="feature-icon" aria-hidden="true">01</span>
             <h3>Learn from a small motion set</h3>
-            <p>An adversarial motion prior generates and interpolates a diverse spectrum of human motion from a few representative motion clips.</p>
+            <p>An adversarial motion prior supplies a learned motion-style reward, helping the policy learn diverse behaviors from a few representative motion clips.</p>
           </article>
           <article class="feature-card">
             <span class="feature-icon" aria-hidden="true">02</span>
@@ -114,14 +115,122 @@
         </div>
         <ol class="framework">
           <li><span class="step-number" aria-hidden="true">01</span><h3>Human reference motion</h3><p>A small set of reference motion clips.</p></li>
-          <li><span class="step-number" aria-hidden="true">02</span><h3>Adversarial motion prior</h3><p>A learned prior that guides locomotor behavior.</p></li>
-          <li><span class="step-number" aria-hidden="true">03</span><h3>Musculoskeletal simulation</h3><p>Policy learning within physically simulated movement.</p></li>
-          <li><span class="step-number" aria-hidden="true">04</span><h3>Simulated locomotion</h3><p>Diverse behaviors and exoskeleton control across uneven terrain.</p></li>
+          <li><span class="step-number" aria-hidden="true">02</span><h3>Learn a human policy</h3><p>PPO combines task reward with an adversarial motion prior in musculoskeletal simulation.</p></li>
+          <li><span class="step-number" aria-hidden="true">03</span><h3>Expand the terrain</h3><p>Train on uneven ground and conditions outside the reference demonstrations.</p></li>
+          <li><span class="step-number" aria-hidden="true">04</span><h3>Learn hip assistance</h3><p>Co-optimize human movement and exoskeleton commands under a frozen motion prior.</p></li>
         </ol>
         <figure class="hero-visual-card framework-figure" hidden>
           <img id="framework-image" alt="Overview of the agile exoskeleton control learning framework" loading="lazy">
           <figcaption class="visual-caption">Overview of the learning framework.</figcaption>
         </figure>
+      </div>
+    </section>
+
+    <section class="section methods-section" id="methods" aria-labelledby="methods-heading">
+      <div class="container">
+        <div class="section-heading">
+          <p class="section-kicker">Methods</p>
+          <h2 id="methods-heading">From human motion to learned hip assistance</h2>
+          <p class="section-intro">The framework targets the exoskeleton control policy. A muscle-driven human policy first learns locomotion, then adapts jointly with the exoskeleton.</p>
+        </div>
+        <p class="method-version">Configuration: v14, documented October 22, 2026. The exoskeleton-training budget below is scheduled; it does not imply a completed experiment.</p>
+        <nav class="method-nav" aria-label="Methods topics">
+          <a href="#curriculum">Curriculum &amp; training</a>
+          <a href="#reward">Reward formulation</a>
+          <a href="#amp-prior">AMP prior</a>
+          <a href="#exo-design">Exoskeleton controller</a>
+        </nav>
+
+        <article class="method-block" id="curriculum" aria-labelledby="curriculum-heading">
+          <h3 id="curriculum-heading">1. Curriculum and training mechanics</h3>
+          <p>Training progresses from conditions covered by, or between, reference demonstrations to a broader simulated terrain set. Hip assistance is enabled only after this human locomotion policy has been established.</p>
+          <div class="table-scroll" tabindex="0" role="region" aria-label="Three-stage curriculum table; scroll horizontally on small screens">
+            <table class="method-table curriculum-table">
+              <caption>Three-stage training curriculum</caption>
+              <thead><tr><th scope="col">Setting</th><th scope="col">Stage A · Motion learning</th><th scope="col">Stage B · Terrain expansion</th><th scope="col">Stage C · Hip assistance</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Cumulative frames</th><td>0–250 million</td><td>250 million–1 billion, including a 500-million-frame extension</td><td>1–1.5 billion <span class="table-note">(scheduled)</span></td></tr>
+                <tr><th scope="row">Exoskeleton</th><td>Off</td><td>Off</td><td>On; hip equilibrium-angle controller and added device mass in the pelvis/femurs</td></tr>
+                <tr><th scope="row">Terrain</th><td>Level/gentle slopes ±3°; slopes ±4–10°; stairs ±5, ±10, ±15 cm</td><td>Stage A plus uneven amplitudes 0.084, 0.168, 0.210, 0.252 m</td><td>Full Stage B terrain set</td></tr>
+                <tr><th scope="row">Terrain progression</th><td>Stair treads 0.275/0.30 m; slope-dependent speed cap</td><td>Treads extend to 0.40 m; slope-speed cap removed; uneven landings ≥0.30 m</td><td>Same terrain and speed settings as Stage B</td></tr>
+                <tr><th scope="row">AMP discriminator</th><td>Updated using every world</td><td>Updated using only worlds within demonstration coverage</td><td>Frozen</td></tr>
+                <tr><th scope="row">Task / AMP weights</th><td>0.5 / 0.5</td><td>0.7 / 0.3</td><td>0.7 / 0.3</td></tr>
+                <tr><th scope="row">Task reward</th><td>Speed tracking, metabolic effort, riser-kick and edge-stepping penalties</td><td>Same terms and coefficients</td><td>Same terms plus normalized exoskeleton-torque cost</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="method-note">“Outside demonstration coverage” refers to missing human motion demonstrations for those conditions. These terrains are explicitly sampled during policy training; the current evaluation uses training terrain layouts.</p>
+
+          <div class="training-stats" aria-label="Training scale">
+            <div><strong>4,096</strong><span>parallel simulation worlds</span></div>
+            <div><strong>40 Hz</strong><span>policy control frequency</span></div>
+            <div><strong>163,840</strong><span>frames per PPO iteration</span></div>
+          </div>
+          <dl class="mechanics-list">
+            <div><dt>Simulation and policy</dt><dd>GAIT GPU simulation with the H1018 2-D musculoskeletal model. The policy has 228 observations, including a terrain height map, and 25 action channels: 18 muscle excitations, six hip-exoskeleton commands, and one lumbar command.</dd></div>
+            <div><dt>Model configuration</dt><dd>All stages use added midfoot arch contact spheres and a 1.3× multiplier on maximum isometric muscle force. The metabolic model’s muscle mass scales with this force change.</dd></div>
+            <div><dt>PPO updates</dt><dd>Each iteration collects 40 control steps per world. PPO uses two epochs with 40 minibatches of 4,096 transitions; generalized advantage estimation uses γ = 0.99 and λ = 0.95. Episodes last at most 1,000 control steps (25 s).</dd></div>
+            <div><dt>Adaptive terrain sampling</dt><dd>All levels within a stage are available from its start. Levels are sampled in proportion to difficulty scores bounded between 0.1 and 1. A fall raises the score by 0.1; a successful timeout lowers it by 0.05, allocating more experience to difficult conditions.</dd></div>
+            <div><dt>Stable stage transitions</dt><dd>Observation normalization is frozen after the first five million frames of Stage A. Checkpoints preserve curriculum scores for shared levels; newly introduced levels start at score 1.</dd></div>
+            <div><dt>Resets and episode handling</dt><dd>Stair episodes start on a flat landing. Low torso height, excessive ground reaction force (&gt;3 body weights after an initial grace period), or numerical divergence ends an episode. In Stage C, a timeout succeeds if distance traveled is at least min(10 m, 0.6 × commanded speed × 25 s).</dd></div>
+            <div><dt>Evaluation and checkpoints</dt><dd>Periodic evaluation runs every 50 iterations over 32 worlds. Training checkpoints are saved every two iterations. The current evaluation and video exports use the trained terrain set.</dd></div>
+          </dl>
+        </article>
+
+        <article class="method-block" id="reward" aria-labelledby="reward-heading">
+          <h3 id="reward-heading">2. Reward formulation</h3>
+          <p>At each control step, an additive task objective is combined with the AMP motion-style reward. The stage weights are given in the curriculum table.</p>
+          <div class="equation" role="math" aria-label="Total reward equals task weight times task reward plus AMP weight times AMP reward">
+            <p>r = w<sub>task</sub> r<sub>task</sub> + w<sub>AMP</sub> r<sub>AMP</sub></p>
+            <p>r<sub>task</sub> = r<sub>vel</sub> − 2.5 × 10<sup>−4</sup> P<sub>met</sub> − 0.5 C<sub>kick</sub> − 1.0 C<sub>edge</sub> − 0.05 C<sub>exo</sub></p>
+          </div>
+          <div class="table-scroll" tabindex="0" role="region" aria-label="Reward terms table">
+            <table class="method-table">
+              <caption>Terms inside the task reward</caption>
+              <thead><tr><th scope="col">Term</th><th scope="col">Definition and purpose</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">r<sub>vel</sub> · Speed tracking</th><td>The speed component is 1 inside a ±0.1 m/s band around the command and decays as exp(−2.04 d²) beyond it, where d is the error beyond that band. It is multiplied by exp(−0.1 ω<sub>torso</sub>²) to discourage torso oscillation.</td></tr>
+                <tr><th scope="row">P<sub>met</sub> · Muscle effort</th><td>Gross metabolic power of the 18 muscles, in watts, computed with an Umberger/Uchida-based metabolic model.</td></tr>
+                <tr><th scope="row">C<sub>kick</sub> · Riser contact</th><td>Counts feet with a heel/toe contact dominated by horizontal force, |F<sub>x</sub>| &gt; |F<sub>y</sub>|, identifying impacts against a riser face.</td></tr>
+                <tr><th scope="row">C<sub>edge</sub> · Unsafe edge placement</th><td>Detects loaded arch contacts or geometric edge placement: a loaded foot on a corner, perched near a drop, or straddling a riser. Geometry checks require a foot load of at least 0.25 body weights.</td></tr>
+                <tr><th scope="row">C<sub>exo</sub> · Assistance cost</th><td>Sum over both hips of [τ<sub>exo</sub> / (22 N·m)]². This term is zero while the exoskeleton is off.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Riser and edge penalties apply on stairs and uneven ground after a 26-step reset grace period. Edge contacts incur penalties rather than immediate termination, preserving opportunities to learn recovery and foot placement. There is no alive bonus or explicit fall penalty; a fall ends the remaining reward stream.</p>
+        </article>
+
+        <article class="method-block" id="amp-prior" aria-labelledby="amp-heading">
+          <h3 id="amp-heading">3. The AMP prior’s role</h3>
+          <p>Reference clips contain level-ground motion, slopes at ±5° and ±10°, and stair ascent/descent. There are no uneven-ground demonstrations. An adversarial motion prior (AMP) supplies a learned style reward, guiding the PPO policy toward human-like motion while the task objective drives speed tracking, terrain negotiation, and effort reduction.</p>
+          <div class="equation" role="math" aria-label="AMP reward equals the maximum of zero and one minus one quarter of the squared discriminator score minus one">
+            <p>r<sub>AMP</sub> = max[0, 1 − ¼ (D(φ<sub>t−1</sub>, φ<sub>t</sub>) − 1)²]</p>
+          </div>
+          <p>The least-squares GAN discriminator scores two consecutive normalized 24-dimensional motion features. They describe pelvis and joint kinematics, feet relative to the pelvis, and torso direction. The discriminator receives neither terrain geometry nor commanded speed.</p>
+          <div class="method-cards">
+            <div class="method-card"><h4>Keep the prior relevant</h4><p>In Stage B, discriminator updates use only demonstration-covered worlds. This avoids teaching it to reject terrain-adaptive movements simply because uneven-ground examples are absent from the demonstrations. The style reward is still applied everywhere, with its weight reduced to 0.3.</p></div>
+            <div class="method-card"><h4>Allow assisted movement to adapt</h4><p>In Stage C, the discriminator is frozen as a fixed unassisted-motion prior while human muscle commands and exoskeleton commands are jointly optimized. This prevents the discriminator from continually redefining assistance-induced motion changes as undesirable. Kinematic drift remains a check for ongoing evaluation.</p></div>
+          </div>
+        </article>
+
+        <article class="method-block" id="exo-design" aria-labelledby="exo-heading">
+          <h3 id="exo-heading">4. Exoskeleton controller design</h3>
+          <p>Each hip uses an equilibrium-angle controller. The policy outputs a flexion equilibrium angle, an extension equilibrium angle, and a gait-mode command. These two three-command groups form six exoskeleton action channels. The controller blends flexion assistance, extension assistance, and transparent behavior, converting the commands into hip torque at each control step.</p>
+          <div class="table-scroll" tabindex="0" role="region" aria-label="Exoskeleton controller parameters">
+            <table class="method-table">
+              <caption>Hip-assistance command design</caption>
+              <thead><tr><th scope="col">Parameter</th><th scope="col">Current setting</th><th scope="col">Design rationale</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Flexion equilibrium</th><td>q<sub>flex</sub> = 45° + 20° a<sub>flex</sub><br>Range: 25°–65°</td><td>Keeps the flexion target beyond typical level-walking hip peaks; the upper range accommodates larger flexion in stair ascent.</td></tr>
+                <tr><th scope="row">Extension equilibrium</th><td>q<sub>ext</sub> = −30° + 20° a<sub>ext</sub><br>Range: −50° to −10°</td><td>The neutral angle is near the level-walking extension peak, avoiding the premature resistance associated with the earlier −10° neutral.</td></tr>
+                <tr><th scope="row">Gait-mode command</th><td>Flexion / extension / transparency<br>0.1 s command filter</td><td>Lets the policy decide when assistance should engage and when the device should remain nearly transparent.</td></tr>
+                <tr><th scope="row">Torque limit</th><td>22 N·m per hip</td><td>Bounds assistance and provides the normalization for the exoskeleton-effort penalty.</td></tr>
+                <tr><th scope="row">Stage C initialization</th><td>Reinitialized exoskeleton outputs<br>Exploration standard deviation: 0.5</td><td>Provides sufficient exploration after command filtering; smaller initial exploration previously left assistance near transparency.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="method-note">Angle actions a<sub>flex</sub> and a<sub>ext</sub> lie in [−1, 1]. Stage C starts from the terrain-trained human policy, enables the exoskeleton model, and continues joint optimization with the discriminator and observation normalizer frozen. The metabolic term encourages economical movement, while the torque cost discourages unnecessary assistance.</p>
+        </article>
       </div>
     </section>
 

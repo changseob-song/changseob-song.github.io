@@ -13,12 +13,20 @@ The HTML includes noindex, nofollow, and noarchive directives. These ask complia
 ## Content to finish
 
 - Confirm the final title and affiliations. Author order supplied by Changseob: Changseob Song, Ilseung Park, Inseung Kang.
-- Replace or refine the project description and conceptual framework using the actual implementation.
+- The methods section follows the supplied training README's current v14 configuration (October 22, 2026). Update it as the implementation evolves.
 - Walking and running demonstrations are included. Add more project-specific videos as needed.
 - Add quantitative findings only when ready to share; there are no fabricated metrics, publication claims, or hardware-validation claims.
 - Add a paper/preprint or citation only when it exists.
 
 The copy is based on the supplied description: an adversarial motion prior trained on a small set of reference motion clips enables diverse locomotor behaviors across uneven terrain in musculoskeletal simulation. No assets from other research projects are presented as evidence for this work.
+
+## Methods source and scope
+
+The methods summary uses the current v14 pipeline and its supporting definitions in the user-supplied training README. Older experiment logs are not presented as current settings. Stage C's 1–1.5 billion frame budget is scheduled, not a claim of completion. Evaluation is explicitly described as using training terrain layouts.
+
+The page includes the curriculum, PPO/training mechanics, additive reward terms, LSGAN AMP reward, discriminator update schedule, and hip equilibrium-angle command design. It does not claim a demonstrated metabolic benefit or hardware transfer for this unpublished project.
+
+The supplied source describes controller commands, angle ranges, mode behavior, filtering, and torque limits but does not provide the complete mode-blending/gain equations. Those details are not invented. The stiffness K = 40 used in the README's diagnostic work calculation is not asserted to be a fully specified current controller gain.
 
 ## Add videos
 

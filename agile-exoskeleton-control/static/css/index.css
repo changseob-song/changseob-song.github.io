@@ -89,6 +89,46 @@ h3 { color: var(--navy-900); font-size: 1.13rem; font-weight: 700; line-height: 
 .framework p { font-size: .92rem; color: var(--slate-700); margin-top: .7rem; }
 .framework-figure { margin-top: 2rem; }
 .framework-figure img { display: block; max-width: 100%; height: auto; margin-inline: auto; }
+.method-version, .method-note { color: var(--slate-700); font-size: .92rem; padding: 1rem 1.15rem; border-left: 3px solid #92b6e5; background: #eef4fb; border-radius: 0 10px 10px 0; }
+.method-nav { display: flex; flex-wrap: wrap; gap: .65rem 1.3rem; margin: 1.5rem 0 2rem; font-size: .94rem; }
+.method-block { margin-top: 3rem; scroll-margin-top: 1.5rem; }
+.method-block > h3 { font-size: 1.45rem; margin-bottom: 1.2rem; }
+.method-block > p + p { margin-top: 1rem; }
+.method-block > p { color: var(--slate-700); }
+.table-scroll { width: 100%; overflow-x: auto; margin: 1.5rem 0; border: 1px solid var(--slate-200); border-radius: 14px; background: var(--white); }
+.table-scroll:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+.method-table { width: 100%; border-collapse: collapse; text-align: left; font-size: .92rem; }
+.method-table caption { text-align: left; padding: 1rem 1.1rem; font-weight: 700; color: var(--navy-900); border-bottom: 1px solid var(--slate-200); }
+.method-table th, .method-table td { padding: .9rem 1rem; vertical-align: top; border-bottom: 1px solid var(--slate-200); }
+.method-table thead th { background: #eef4fb; color: #173657; }
+.method-table tbody th { color: var(--navy-900); font-weight: 600; min-width: 145px; }
+.method-table tbody td { color: var(--slate-700); min-width: 170px; }
+.method-table tbody tr:last-child > * { border-bottom: 0; }
+.curriculum-table { min-width: 800px; }
+.curriculum-table td { width: 28%; }
+.table-note { font-size: .85rem; color: var(--slate-500); }
+.training-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin: 2rem 0; }
+.training-stats > div { padding: 1.2rem; border: 1px solid var(--slate-200); border-radius: 14px; text-align: center; background: var(--white); }
+.training-stats strong { display: block; font-size: 1.8rem; color: var(--blue); line-height: 1.25; }
+.training-stats span { display: block; font-size: .85rem; color: var(--slate-700); margin-top: .5rem; }
+.mechanics-list { margin: 0; }
+.mechanics-list > div { display: grid; grid-template-columns: 180px 1fr; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--slate-200); }
+.mechanics-list dt { font-weight: 700; color: var(--navy-900); }
+.mechanics-list dd { margin: 0; color: var(--slate-700); font-size: .96rem; }
+.equation { padding: 1.2rem; margin: 1.5rem 0; background: #edf3fb; border: 1px solid #d7e3f3; border-radius: 14px; font-family: ui-serif, Georgia, serif; font-size: 1.15rem; color: var(--navy-900); overflow-wrap: anywhere; }
+.equation p + p { margin-top: 1rem; }
+.method-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; margin-top: 1.5rem; }
+.method-card { border: 1px solid var(--slate-200); border-radius: 16px; padding: 1.5rem; background: var(--white); }
+.method-card h4 { margin: 0 0 .75rem; font-size: 1.04rem; color: var(--navy-900); }
+.method-card p { color: var(--slate-700); font-size: .96rem; }
+@media (max-width: 600px) {
+  .training-stats, .method-cards { grid-template-columns: 1fr; }
+  .mechanics-list > div { grid-template-columns: 1fr; gap: .5rem; }
+  .method-block > h3 { font-size: 1.25rem; }
+  .method-table { font-size: .87rem; }
+  .method-table th, .method-table td { padding: .75rem; }
+  .equation { font-size: 1.04rem; padding: 1rem; }
+}
 .status-card { display: flex; align-items: center; gap: 2rem; padding: 2rem; }
 .status-card > div { flex: 1; }
 .section-kicker { color: var(--blue); margin-bottom: .55rem; }
