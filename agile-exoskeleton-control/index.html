@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agile Exoskeleton Control in Musculoskeletal Simulation</title>
+  <meta name="description" content="Unpublished research exploring agile exoskeleton control with adversarial human motion priors and musculoskeletal simulation.">
+  <meta name="author" content="Changseob Song, Ilseung Park, Inseung Kang">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="googlebot" content="noindex, nofollow, noarchive">
+  <meta name="theme-color" content="#0f172a">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Agile Exoskeleton Control in Musculoskeletal Simulation">
+  <meta property="og:description" content="Research preview: learning diverse locomotor behaviors from a small set of reference motions in musculoskeletal simulation.">
+  <meta property="og:url" content="https://changseob-song.github.io/agile-exoskeleton-control/">
+  <meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="static/css/index.css">
+  <script defer src="static/js/media.js"></script>
+  <script defer src="static/js/index.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <main id="main-content">
+    <header class="project-hero">
+      <div class="hero-body container">
+        <p class="eyebrow">Research preview · Unpublished work</p>
+        <h1 class="publication-title">Agile Exoskeleton Control<br class="desktop-break"> in Musculoskeletal Simulation</h1>
+        <p class="hero-summary">Learning diverse locomotor behaviors from a small set of human reference motions.</p>
+        <p class="publication-authors"><a href="https://changseob-song.github.io/">Changseob Song</a><span class="author-separator" aria-hidden="true">·</span><span>Ilseung Park</span><span class="author-separator" aria-hidden="true">·</span><a href="https://www.meche.engineering.cmu.edu/directory/bios/kang-inseung.html">Inseung Kang</a></p>
+        <p class="publication-affiliations">Carnegie Mellon University · MetaMobility Lab</p>
+        <nav class="publication-links" aria-label="Project sections">
+          <a class="button" href="#overview">Overview</a>
+          <a class="button" href="#demonstrations">Videos</a>
+          <a class="button" href="#framework">Framework</a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="section hero-visual-section" id="overview" aria-labelledby="overview-heading">
+      <div class="container">
+        <div class="section-heading centered">
+          <h2 id="overview-heading">Project overview</h2>
+          <p class="section-intro">Human motion priors meet physics-based locomotion learning.</p>
+        </div>
+        <figure class="hero-visual-card">
+          <div class="media-slot" data-media="overview" aria-label="Project overview video">
+            <div class="media-placeholder">
+              <span class="play-symbol" aria-hidden="true">▶</span>
+              <p class="placeholder-title">Project video</p>
+              <p class="placeholder-note">Video coming soon</p>
+            </div>
+          </div>
+          <figcaption class="visual-caption">An overview of motion-prior learning and exoskeleton control in musculoskeletal simulation.</figcaption>
+        </figure>
+        <div class="lead-content">
+          <p>We explore agile lower-limb exoskeleton control through human motion priors and musculoskeletal simulation. An adversarial motion prior learned from a small set of reference motion clips supports diverse locomotor behaviors across uneven terrain.</p>
+          <p>The project brings together learning from human movement and physically grounded policy training. This page provides an early overview of ongoing, unpublished work; detailed methods, videos, and quantitative evaluation will be added as they become available.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section is-light" aria-labelledby="highlights-heading">
+      <div class="container">
+        <div class="section-heading"><h2 id="highlights-heading">Why this matters</h2></div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <span class="feature-icon" aria-hidden="true">01</span>
+            <h3>Learn from a small motion set</h3>
+            <p>An adversarial motion prior captures movement patterns from a small set of human reference clips.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-icon" aria-hidden="true">02</span>
+            <h3>Ground learning in physics</h3>
+            <p>Musculoskeletal simulation connects motion learning with the dynamics of human movement and exoskeleton control.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-icon" aria-hidden="true">03</span>
+            <h3>Explore diverse locomotion</h3>
+            <p>The focus is on locomotor behaviors across uneven terrain within the simulated environment.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="demonstrations" aria-labelledby="demos-heading">
+      <div class="container">
+        <div class="section-heading centered">
+          <h2 id="demos-heading">Simulation demonstrations</h2>
+          <p class="section-intro">A closer look at motion learning, terrain interaction, and exoskeleton control.</p>
+        </div>
+        <article class="demo-section">
+          <h3>Human motion priors</h3>
+          <p class="demo-description">Learning locomotor behavior from a small set of reference motion clips using an adversarial motion prior.</p>
+          <figure class="hero-visual-card">
+            <div class="media-slot" data-media="motion-prior" aria-label="Human motion prior demonstration">
+              <div class="media-placeholder">
+                <span class="play-symbol" aria-hidden="true">▶</span>
+                <p class="placeholder-title">Motion-prior demonstration</p>
+                <p class="placeholder-note">Video coming soon</p>
+              </div>
+            </div>
+            <figcaption class="visual-caption">Reference motions and learned locomotor behavior in musculoskeletal simulation.</figcaption>
+          </figure>
+        </article>
+        <article class="demo-section">
+          <h3>Locomotion across uneven terrain</h3>
+          <p class="demo-description">Exploring the locomotor behaviors produced by the learned policy across uneven simulated terrain.</p>
+          <figure class="hero-visual-card">
+            <div class="media-slot" data-media="terrain" aria-label="Uneven terrain simulation demonstration">
+              <div class="media-placeholder">
+                <span class="play-symbol" aria-hidden="true">▶</span>
+                <p class="placeholder-title">Uneven-terrain demonstration</p>
+                <p class="placeholder-note">Video coming soon</p>
+              </div>
+            </div>
+            <figcaption class="visual-caption">Locomotion in a simulated terrain environment.</figcaption>
+          </figure>
+        </article>
+        <article class="demo-section">
+          <h3>Exoskeleton control in simulation</h3>
+          <p class="demo-description">Examining learned exoskeleton control alongside the motion of the simulated musculoskeletal model.</p>
+          <figure class="hero-visual-card">
+            <div class="media-slot" data-media="exoskeleton" aria-label="Exoskeleton control simulation demonstration">
+              <div class="media-placeholder">
+                <span class="play-symbol" aria-hidden="true">▶</span>
+                <p class="placeholder-title">Exoskeleton-control demonstration</p>
+                <p class="placeholder-note">Video coming soon</p>
+              </div>
+            </div>
+            <figcaption class="visual-caption">Exoskeleton control and human movement within the simulation.</figcaption>
+          </figure>
+        </article>
+      </div>
+    </section>
+
+    <section class="section is-light" id="framework" aria-labelledby="framework-heading">
+      <div class="container">
+        <div class="section-heading">
+          <h2 id="framework-heading">Framework at a glance</h2>
+          <p class="section-intro">A conceptual overview of the project.</p>
+        </div>
+        <ol class="framework">
+          <li><span class="step-number" aria-hidden="true">01</span><h3>Human reference motion</h3><p>A small set of reference motion clips.</p></li>
+          <li><span class="step-number" aria-hidden="true">02</span><h3>Adversarial motion prior</h3><p>A learned prior that guides locomotor behavior.</p></li>
+          <li><span class="step-number" aria-hidden="true">03</span><h3>Musculoskeletal simulation</h3><p>Policy learning within physically simulated movement.</p></li>
+          <li><span class="step-number" aria-hidden="true">04</span><h3>Simulated locomotion</h3><p>Diverse behaviors and exoskeleton control across uneven terrain.</p></li>
+        </ol>
+        <figure class="hero-visual-card framework-figure" hidden>
+          <img id="framework-image" alt="Overview of the agile exoskeleton control learning framework" loading="lazy">
+          <figcaption class="visual-caption">Overview of the learning framework.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="status-heading">
+      <div class="container">
+        <div class="status-card">
+          <div>
+            <p class="section-kicker">Project status</p>
+            <h2 id="status-heading">Ongoing, unpublished research</h2>
+            <p>This preview describes work in musculoskeletal simulation. Quantitative findings and publication materials are not yet included.</p>
+          </div>
+          <a class="contact-button" href="mailto:changseob@cmu.edu">Contact Changseob</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container centered">
+        <p>Agile Exoskeleton Control in Musculoskeletal Simulation</p>
+        <p>Research preview · Carnegie Mellon University</p>
+        <p class="template-credit">Layout adapted from the Continual Online Personalization project page and the Academic Project Page Template.</p>
+      </div>
+    </footer>
+  </main>
+  <a class="scroll-to-top" href="#main-content" aria-label="Back to top" hidden>↑</a>
+</body>
+</html>
