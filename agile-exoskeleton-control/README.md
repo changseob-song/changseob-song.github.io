@@ -22,9 +22,9 @@ The copy is based on the supplied description: an adversarial motion prior train
 
 ## Methods source and scope
 
-The methods summary uses the current v14 pipeline and its supporting definitions in the user-supplied training README. Older experiment logs are not presented as current settings. Stage C's 1–1.5 billion frame budget is scheduled, not a claim of completion. Evaluation is explicitly described as using training terrain layouts.
+The concise methods summary follows the current v14 pipeline in the user-supplied training README. Older experiment logs are not presented as current settings. Training budgets and detailed optimizer settings are omitted. Evaluation is described as using training terrain layouts.
 
-The page includes the curriculum, PPO/training mechanics, additive reward terms, LSGAN AMP reward, discriminator update schedule, and hip equilibrium-angle command design. It does not claim a demonstrated metabolic benefit or hardware transfer for this unpublished project.
+The page includes a compact curriculum table, the weighted task/AMP reward, the discriminator update schedule, and the hip equilibrium-angle controller design. Numeric details are limited to parallel simulation count, control frequency, central hip set-points, and torque limit. It does not claim a demonstrated metabolic benefit or hardware transfer for this unpublished project.
 
 The supplied source describes controller commands, angle ranges, mode behavior, filtering, and torque limits but does not provide the complete mode-blending/gain equations. Those details are not invented. The stiffness K = 40 used in the README's diagnostic work calculation is not asserted to be a fully specified current controller gain.
 
